@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GZVS — Georgios Zacharidis | Developer</title>
-  <meta name="description" content="Georgios Zacharidis (GZVS): Dynamics 365 F&O developer, Microsoft integrations, Azure AI services, AI agents, and useful open-source tools. Explore TinyShield.">
+  <meta name="description" content="Georgios Zacharidis (GZVS): Dynamics 365 F&O developer, Microsoft integrations, Azure AI services, AI agents, and public projects on GitHub.">
   <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="https://gzvs.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="GZVS — Enterprise roots. Independent spirit.">
-  <meta property="og:description" content="Dynamics 365 F&O, Microsoft integrations, AI exploration, and useful open-source tools. Meet Georgios Zacharidis and explore TinyShield.">
+  <meta property="og:description" content="Dynamics 365 F&O, Microsoft integrations, AI exploration, and public projects on GitHub. Meet Georgios Zacharidis.">
   <meta property="og:url" content="https://gzvs.github.io/">
   <meta property="og:image" content="https://gzvs.github.io/assets/georgios-github-avatar.png">
   <meta property="og:image:alt" content="Georgios Zacharidis, GZVS">
@@ -17,6 +17,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/inter-latin.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <script type="module" src="repositories.js"></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -57,26 +58,27 @@
     </section>
 
     <section class="work section container" id="work" aria-labelledby="work-title">
-      <div class="section-heading">
-        <h2 id="work-title">A small tool.<br>A quieter web.</h2>
-        <a class="text-link" href="https://github.com/GZVS?tab=repositories" target="_blank" rel="noopener noreferrer">All repositories <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>
-      </div>
-      <article class="project" aria-labelledby="tinyshield-title">
-        <div class="project-art">
-          <img src="assets/tinyshield-icon.png" width="128" height="128" alt="TinyShield’s blue shield icon" loading="lazy">
+      <div class="repositories-heading">
+        <div>
+          <h2 id="work-title">On GitHub.</h2>
+          <p>Projects, experiments, and useful little tools.</p>
         </div>
-        <div class="project-copy">
-          <h3 id="tinyshield-title">TinyShield</h3>
-          <p class="project-kind">Browser extension</p>
-          <p class="project-description">A lightweight, open-source browser extension for common ads and trackers, with optional adult and gambling website blocking.</p>
-          <p class="project-meta">v3.1.1 · MIT · Chrome &amp; Edge</p>
-          <div class="actions">
-            <a class="button" href="https://github.com/GZVS/tinyshield" target="_blank" rel="noopener noreferrer">View the project</a>
-            <a class="text-link" href="https://github.com/GZVS/tinyshield/releases/tag/v3.1.1" target="_blank" rel="noopener noreferrer">Download v3.1.1 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>
+        <div class="repositories-actions">
+          <a class="text-link" href="https://github.com/GZVS?tab=repositories" target="_blank" rel="noopener noreferrer">All repositories <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>
+          <div class="carousel-controls" aria-label="Repository carousel controls">
+            <button class="carousel-arrow" type="button" id="repos-prev" aria-label="Previous repositories" aria-controls="repos-track" disabled><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7"/></svg></button>
+            <button class="carousel-arrow" type="button" id="repos-next" aria-label="Next repositories" aria-controls="repos-track" disabled><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></button>
           </div>
         </div>
-      </article>
-      <p class="work-note">Small tools, built to make everyday browsing a little easier.</p>
+      </div>
+      <div class="repositories-carousel" role="region" aria-roledescription="carousel" aria-labelledby="work-title">
+        <ul class="repositories-track" id="repos-track" tabindex="0" aria-label="Public GitHub repositories" hidden></ul>
+        <div class="repositories-status">
+          <p id="repos-status" role="status" aria-live="polite">View my public projects on GitHub.</p>
+          <button class="repos-retry" id="repos-retry" type="button" hidden>Try again</button>
+        </div>
+      </div>
+      <noscript><p class="repositories-noscript">Enable JavaScript to browse the carousel, or use <a href="https://github.com/GZVS?tab=repositories">the full repository list on GitHub</a>.</p></noscript>
     </section>
 
     <section class="about section container" id="about" aria-labelledby="about-title">

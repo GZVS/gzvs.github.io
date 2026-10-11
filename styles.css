@@ -21,13 +21,14 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; scroll-padding-top: 28px; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, "Segoe UI", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 figure, h1, h2, h3, p, ul, dl, dd { margin: 0; }
 button, a { -webkit-tap-highlight-color: transparent; }
-a:focus-visible { outline: 3px solid var(--blue); outline-offset: 6px; border-radius: 4px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 6px; border-radius: 4px; }
 ::selection { background: #d8eaff; color: var(--ink); }
 .container { width: min(1420px, calc(100% - var(--gutter) * 2)); margin-inline: auto; }
 .skip-link { position: absolute; z-index: 10; left: 18px; top: 18px; transform: translateY(-180%); padding: 14px 20px; border-radius: 8px; background: var(--ink); color: white; font-size: 16px; }
@@ -62,20 +63,32 @@ h1 span { display: block; }
 .skills-strip li { text-align: center; font-size: clamp(16px, 1.63vw, 25px); line-height: 1.5; letter-spacing: -.03em; font-weight: 550; padding: 6px 16px; }
 .skills-strip li + li { border-left: 1px solid var(--line); }
 .section { padding-top: clamp(84px, 9vw, 138px); }
-.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 54px; }
-.section-heading h2 { font-size: clamp(48px, 6.7vw, 102px); line-height: 1.04; font-weight: 800; letter-spacing: -.06em; }
-.section-heading .text-link { white-space: nowrap; }
-.project { display: grid; grid-template-columns: 37% minmax(0, 1fr); border: 1px solid #cbd8e8; border-radius: var(--radius); overflow: hidden; }
-.project-art { min-height: 510px; display: flex; align-items: center; justify-content: center; background: var(--pale-blue); padding: 60px; }
-.project-art img { width: clamp(140px, 16vw, 244px); height: auto; border-radius: 18%; image-rendering: auto; }
-.project-copy { padding: 44px 46px 36px; align-self: center; }
-.project-copy h3 { font-size: clamp(44px, 5.2vw, 80px); font-weight: 750; line-height: 1.12; letter-spacing: -.055em; }
-.project-kind { margin-top: 5px; color: var(--muted); font-size: clamp(20px, 1.9vw, 29px); line-height: 1.35; letter-spacing: -.02em; }
-.project-description { margin-top: 30px; max-width: 830px; font-size: clamp(21px, 2vw, 31px); line-height: 1.42; letter-spacing: -.024em; color: #354967; }
-.project-meta { margin-top: 24px; color: var(--muted); font-size: clamp(18px, 1.7vw, 26px); line-height: 1.35; letter-spacing: -.02em; }
-.project .actions { gap: 32px; margin-top: 32px; }
-.project .button { padding: 20px 38px; font-weight: 500; }
-.work-note { margin-top: 38px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: clamp(17px, 1.7vw, 26px); line-height: 1.55; letter-spacing: -.02em; }
+.work.section { padding-top: 64px; }
+.repositories-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+.repositories-heading h2 { font-size: 36px; line-height: 1.15; font-weight: 750; letter-spacing: -.045em; }
+.repositories-heading p { margin-top: 8px; color: var(--muted); font-size: 17px; line-height: 1.5; }
+.repositories-actions { display: flex; align-items: center; gap: 26px; }
+.repositories-actions .text-link { font-size: 17px; white-space: nowrap; }
+.carousel-controls { display: flex; gap: 8px; }
+.carousel-arrow { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 50%; background: white; color: var(--ink); cursor: pointer; font-size: 20px; transition: border-color 150ms ease, background-color 150ms ease; }
+.carousel-arrow:hover:not(:disabled) { border-color: var(--blue); color: var(--blue); background: var(--pale-blue); }
+.carousel-arrow:disabled { opacity: .35; cursor: default; }
+.repositories-track { display: flex; gap: 16px; list-style: none; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 2px; scrollbar-width: thin; scrollbar-color: #cbd8e8 transparent; padding: 4px 2px 10px; }
+.repositories-track:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; border-radius: 14px; }
+.repositories-track::-webkit-scrollbar { height: 4px; }
+.repositories-track::-webkit-scrollbar-thumb { background: #cbd8e8; border-radius: 8px; }
+.repository-card { flex: 0 0 calc((100% - 16px) / 2); min-width: 0; scroll-snap-align: start; border: 1px solid var(--line); border-radius: 14px; background: white; transition: border-color 150ms ease, background-color 150ms ease; }
+.repository-card:hover { border-color: #afc8ed; background: #fafcff; }
+.repository-card > a { display: block; height: 100%; min-height: 178px; padding: 26px; border-radius: inherit; }
+.repository-card > a:focus-visible { outline-offset: -5px; border-radius: 14px; }
+.repository-title { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; }
+.repository-title h3 { font-size: 23px; font-weight: 650; line-height: 1.3; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.repository-title .icon { width: 20px; height: 20px; color: var(--blue); margin-top: 5px; }
+.repository-card p { margin-top: 14px; color: var(--muted); font-size: 17px; line-height: 1.55; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.repositories-status { min-height: 34px; display: flex; align-items: center; gap: 14px; padding-top: 6px; }
+.repositories-status p, .repositories-noscript { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.repos-retry { padding: 5px 10px; border: 1px solid var(--line); border-radius: 6px; background: white; color: var(--blue); font: inherit; font-size: 14px; cursor: pointer; }
+.repositories-noscript a { color: var(--blue); text-decoration: underline; }
 .about { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 74px; padding-bottom: 96px; }
 .about h2 { font-size: clamp(42px, 4.85vw, 74px); line-height: 1.1; font-weight: 750; letter-spacing: -.05em; }
 .about-copy p { margin-top: 30px; color: var(--muted); font-size: clamp(19px, 1.7vw, 26px); line-height: 1.55; letter-spacing: -.018em; }
@@ -105,10 +118,6 @@ h1 span { display: block; }
   .hero-copy > p { margin-top: 28px; }
   .hero-actions { margin-top: 28px; gap: 22px; }
   .button { padding: 18px 28px; min-height: 58px; }
-  .project-art { min-height: 400px; padding: 40px; }
-  .project-copy { padding: 32px; }
-  .project .actions { gap: 20px; }
-  .project .button { padding: 18px 24px; }
   .about { gap: 36px; }
   .expertise > div { grid-template-columns: 1fr; row-gap: 8px; padding-block: 22px; }
 }
@@ -127,14 +136,11 @@ h1 span { display: block; }
   .skills-strip { grid-template-columns: repeat(3, 1fr); row-gap: 16px; margin-top: 38px; padding-top: 22px; }
   .skills-strip li { font-size: 16px; }
   .skills-strip li:nth-child(4) { border-left: 0; }
-  .section-heading h2 { font-size: 58px; }
-  .section-heading .text-link { font-size: 18px; }
-  .project { grid-template-columns: 33% minmax(0, 1fr); }
-  .project-art { min-height: 430px; padding: 24px; }
-  .project-copy { padding: 30px; }
-  .project-copy h3 { font-size: 48px; }
-  .project-description { font-size: 21px; margin-top: 22px; }
-  .project .text-link { font-size: 18px; }
+  .repositories-heading { align-items: flex-start; }
+  .repositories-actions { gap: 14px; }
+  .repository-card > a { min-height: 192px; padding: 22px; }
+  .repository-title h3 { font-size: 21px; }
+  .repository-card p { font-size: 16px; }
   .about { grid-template-columns: 1fr; gap: 18px; padding-bottom: 64px; }
   .about h2 { font-size: 50px; }
   .about-copy p { max-width: 700px; font-size: 21px; }
@@ -167,20 +173,13 @@ h1 span { display: block; }
   .skills-strip li:nth-child(even) { border-left: 1px solid var(--line); }
   .skills-strip li:last-child { grid-column: 1 / -1; }
   .section { padding-top: 72px; }
-  .section-heading { align-items: flex-start; flex-direction: column; gap: 22px; margin-bottom: 28px; }
-  .section-heading h2 { font-size: clamp(40px, 9vw, 56px); line-height: 1.05; }
-  .section-heading .text-link { font-size: 17px; }
-  .project { grid-template-columns: 1fr; border-radius: 14px; }
-  .project-art { min-height: 230px; padding: 42px; }
-  .project-art img { width: 132px; }
-  .project-copy { padding: 30px 24px; }
-  .project-copy h3 { font-size: 46px; }
-  .project-kind { font-size: 19px; }
-  .project-description { margin-top: 20px; font-size: 20px; line-height: 1.5; }
-  .project-meta { margin-top: 22px; font-size: 17px; }
-  .project .actions { align-items: flex-start; flex-direction: column; margin-top: 24px; gap: 22px; }
-  .project .button { font-size: 18px; }
-  .work-note { margin-top: 24px; font-size: 17px; }
+  .work.section { padding-top: 48px; }
+  .repositories-heading { flex-direction: column; gap: 18px; margin-bottom: 16px; }
+  .repositories-heading h2 { font-size: 32px; }
+  .repositories-heading p { font-size: 16px; }
+  .repositories-actions { width: 100%; justify-content: space-between; }
+  .repositories-actions .text-link { font-size: 16px; }
+  .repository-card { flex-basis: 88%; }
   .about h2 { font-size: clamp(36px, 8vw, 50px); }
   .about-copy p { font-size: 19px; line-height: 1.6; }
   .expertise > div { grid-template-columns: 1fr; gap: 8px; }
