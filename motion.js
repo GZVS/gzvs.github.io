@@ -4,17 +4,18 @@ export function initialMotion(preference, systemReduced) {
   return preference !== 'off' && !systemReduced;
 }
 
-export function sceneFrame({ scrollY = 0, heroHeight = 900, pointerX = 0, pointerY = 0, enabled = true }) {
+export function sceneFrame({ scrollY = 0, heroHeight = 540, pointerX = 0, pointerY = 0, enabled = true }) {
   if (!enabled) return { x: 0, y: 0, rx: 0, ry: 0, scale: 1 };
   const progress = clamp(scrollY / Math.max(1, heroHeight));
-  return { x: -60 * progress, y: Math.max(0, Math.min(scrollY, heroHeight)) * .22,
-    rx: -clamp(pointerY, -1, 1) * 3 + progress * 5,
-    ry: clamp(pointerX, -1, 1) * 6 - progress * 8, scale: 1 - progress * .1 };
+  return { x: -14 * progress, y: clamp(scrollY, 0, heroHeight) * .06,
+    rx: -clamp(pointerY, -1, 1) * 2 + progress * 2,
+    ry: clamp(pointerX, -1, 1) * 3 - progress * 3, scale: 1 - progress * .035 };
 }
 
 function initializeMotion() {
   const root = document.documentElement;
   const toggle = document.getElementById('motion-toggle');
+  const label = document.getElementById('motion-label');
   const scene = document.getElementById('hero-visual');
   const hero = document.querySelector('.hero');
   if (!toggle || !scene || !hero) return;
@@ -39,14 +40,18 @@ function initializeMotion() {
   };
   const schedule = () => { if (!animationFrame) animationFrame = requestAnimationFrame(render); };
   const apply = value => {
-    enabled = value;
+    enabled = value && !reduced.matches;
     root.dataset.motion = enabled ? 'on' : 'off';
+    toggle.disabled = reduced.matches;
+    toggle.title = reduced.matches ? 'Motion is disabled by your device’s reduced-motion preference.' : 'Turn decorative motion on or off';
     toggle.setAttribute('aria-pressed', String(enabled));
     toggle.setAttribute('aria-label', enabled ? 'Motion on' : 'Motion off');
+    if (label) label.textContent = enabled ? 'Motion on' : 'Motion off';
     render();
   };
   toggle.hidden = false;
   toggle.addEventListener('click', () => {
+    // The operating-system preference always wins. A toggle cannot bypass it.
     apply(!enabled);
     saved = enabled ? 'on' : 'off';
     try { localStorage.setItem('gzvs-motion', saved); } catch { /* Continue without storage. */ }
@@ -61,7 +66,10 @@ function initializeMotion() {
     pointerY = (event.clientY / window.innerHeight) * 2 - 1;
     schedule();
   }, { passive: true });
-  document.addEventListener('visibilitychange', schedule);
+  document.addEventListener('visibilitychange', () => {
+    root.dataset.paused = document.hidden ? 'true' : 'false';
+    schedule();
+  });
   const elements = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
@@ -69,7 +77,7 @@ function initializeMotion() {
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       }
-    }, { threshold: .12, rootMargin: '0px 0px -25px 0px' });
+    }, { threshold: .1 });
     elements.forEach(element => observer.observe(element));
   } else elements.forEach(element => element.classList.add('is-visible'));
   apply(enabled);

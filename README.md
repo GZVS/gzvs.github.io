@@ -1,42 +1,32 @@
-# GZVS — Georgios Zacharidis
+# GZVS — Orbital Studio
 
-The personal profile at https://gzvs.github.io/: Dynamics 365 Finance & Operations, browser extensions, Windows apps, and iOS experiences.
+Personal homepage for Georgios Zacharidis, a Dynamics 365 Finance & Operations developer building browser extensions, Windows apps, and iOS apps.
 
-## Design and motion
+Live: https://gzvs.github.io/
 
-A light spatial portfolio with a floating developer illustration, pointer-responsive perspective, scroll-driven depth, a live CSS 3D wireframe cube, and sections entering from different directions. Motion never changes the normal scrolling or hides navigation. The Motion switch pauses decorative animation, parallax, entrance transitions, and smooth carousel movement. The preference is stored locally in the visitor's browser when storage is available. A system preference for reduced motion starts the page with motion off. The visitor can explicitly enable motion with the switch.
+## Design and interactions
 
-On narrow screens the content stacks and pointer parallax is disabled. Text and links remain available when JavaScript is disabled; the GitHub list has a direct-link fallback.
+- Dark orbital design, original portrait, pale-cyan details and amber action button.
+- Layered portrait, orbit trails and software-category links with gentle floating motion, desktop pointer parallax and scroll movement.
+- A Motion control saves the visitor’s preference locally. The operating system’s reduced-motion preference always disables decorative animation. No content depends on animation.
+- Compact carousel of public, owned repositories fetched from the GitHub public API on each visit. All result pages are read; titles, descriptions and repository links come from GitHub. New public repositories appear automatically. No token or private-repository access is used.
+- Previous/next buttons, arrow-key control on the focused carousel, touch scrolling, loading/empty/error states and retry. GitHub rate limiting can temporarily show the fallback link.
+- GitHub, LinkedIn and support links. Responsive layout with text before portrait on small screens.
 
-## Automatic GitHub carousel
+## Files
 
-The carousel requests GZVS's public, owned repositories from GitHub on each visit, newest-created first. It renders the actual name and description and links directly to each public repository. Public forks and this homepage repository are included. No access token is embedded, and private repositories are not requested. Pagination handles more than 100 repositories. Empty lists, missing descriptions, timeouts and API errors have visible fallback states, and the complete GitHub repository list is always linked.
+- `index.html`: semantic page, real portrait, navigation and controls.
+- `styles.css`: design tokens, responsive layout, focus states and motion styling.
+- `motion.js`: motion preference, gentle pointer/scroll transforms and section entry.
+- `repositories.js`: public repository pagination/validation and native carousel.
+- `assets/georgios-github-avatar.png`: original profile photo, unchanged.
+- `assets/orbital-background.webp`, `orbital-trails.webp`, `gzvs-wordmark.webp`: production art derived from the approved concept.
+- `assets/fonts`: self-hosted Inter and DM Serif Display; respective font licenses included.
 
-Create a public repository and fill in its Description in GitHub's About panel: no edit to this website or redeployment is needed. Name, description, visibility and removal changes appear on the next visit, subject to GitHub API availability. The browser uses unauthenticated public API requests, so GitHub's request limits apply.
+No build step, framework, analytics, tracking, cookies or third-party font requests. The only application data request is to api.github.com. Local browser storage is used only for the motion preference.
 
-- API documentation: https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user
-- Limits: https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api
+## Publishing
 
-## Files and updates
+GitHub Pages publishes the root of the `main` branch. `.nojekyll` keeps static files served directly. Open https://gzvs.github.io/ after deployment; a hard refresh may help if an older stylesheet is cached.
 
-- index.html: profile copy, navigation, app categories and confirmed social links.
-- styles.css: design tokens, layouts, 3D geometry, animations and responsive styles.
-- motion.js: motion preference, pointer/scroll transforms and entrance observers.
-- repositories.js: public API loading, safe repository links and carousel controls.
-- assets/developer-dimensions.webp: transparent hero artwork generated for this portfolio.
-- assets/fonts/: locally hosted Inter and its SIL Open Font License.
-- 404.html: custom missing-page screen.
-
-The current LinkedIn link was confirmed by the owner: https://gr.linkedin.com/in/zacharidis.
-
-For local preview, serve this folder over HTTP, for example with Python's http.server on port 8000. No dependency installation, framework or build step is required. JavaScript modules need HTTP rather than a file URL.
-
-Commit changes to the main branch. GitHub Pages is configured for Deploy from a branch, main, /(root). Keep index.html, styles.css, motion.js, repositories.js and assets directly at the repository root. Keep the empty .nojekyll file so GitHub publishes the files directly.
-
-Official publishing guide: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
-
-## Privacy and licenses
-
-There are no accounts, forms or analytics. Motion preference uses browser-local storage. Loading the carousel sends a public API request from the visitor's browser to GitHub. Hosting, API and outbound destinations handle their own service data.
-
-Site code is MIT licensed; see LICENSE. The font has its own included SIL license. The original public GitHub portrait remains available for social metadata; existing image assets retain their owners' rights. The decorative hero illustration is separate from the code-native page text, links and controls.
+To preview locally with Python installed, run `python -m http.server 8080` from the repository root, then open http://localhost:8080/.

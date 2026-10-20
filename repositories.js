@@ -54,6 +54,33 @@ export function carouselBounds(scrollLeft, viewportWidth, contentWidth) {
   return { previous: scrollLeft > 4, next: scrollLeft < maximum - 4 };
 }
 
+// Icons identify known repository types; every title, description and URL stays live GitHub data.
+function makeIcon(name, document) {
+  const icon = document.createElement('span');
+  icon.className = 'repository-icon';
+  icon.setAttribute('aria-hidden', 'true');
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const lower = name.toLowerCase();
+  if (lower === 'tinyshield' || /extension/.test(lower) && !/polic/.test(lower)) {
+    icon.classList.add('icon-extension');
+    path.setAttribute('d', 'M8 3h3a3 3 0 1 1 6 0h4v6a3 3 0 1 0 0 6v6h-6a3 3 0 1 0-6 0H3v-6a3 3 0 1 1 0-6V3z');
+    path.setAttribute('fill', 'currentColor');
+    path.setAttribute('stroke', 'none');
+  } else if (/polic|docs|readme/.test(lower)) {
+    icon.classList.add('icon-document');
+    path.setAttribute('d', 'M6 2h8l5 5v15H5V2h1m8 0v6h5M8 12h8m-8 4h8');
+  } else if (/github[.]io$/.test(lower)) {
+    path.setAttribute('d', 'M4 3h16v13H4zM8 21h8m-4-5v5M2 16h20');
+  } else {
+    path.setAttribute('d', 'm7 6-6 6 6 6m10-12 6 6-6 6M14 3l-4 18');
+  }
+  svg.append(path);
+  icon.append(svg);
+  return icon;
+}
+
 function makeCard(repository, document) {
   const item = document.createElement('li');
   item.className = 'repository-card';
@@ -64,19 +91,15 @@ function makeCard(repository, document) {
   link.title = repository.description;
   const heading = document.createElement('h3');
   heading.textContent = repository.name;
-  const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  arrow.setAttribute('class', 'icon');
-  arrow.setAttribute('viewBox', '0 0 24 24');
-  arrow.setAttribute('aria-hidden', 'true');
-  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  path.setAttribute('d', 'M6 18 18 6M6 6h12v12');
-  arrow.append(path);
   const top = document.createElement('div');
   top.className = 'repository-title';
-  top.append(heading, arrow);
+  top.append(heading);
   const description = document.createElement('p');
   description.textContent = repository.description;
-  link.append(top, description);
+  const details = document.createElement('div');
+  details.className = 'repository-details';
+  details.append(top, description);
+  link.append(makeIcon(repository.name, document), details);
   item.append(link);
   return item;
 }
@@ -136,7 +159,13 @@ function initializeCarousel() {
       track.hidden = true;
       previous.disabled = true;
       next.disabled = true;
-      status.textContent = 'Repositories are unavailable right now. Try again or view them on GitHub.';
+      status.replaceChildren(document.createTextNode('Repositories are unavailable right now. '));
+      const fallback = document.createElement('a');
+      fallback.href = 'https://github.com/GZVS?tab=repositories';
+      fallback.target = '_blank';
+      fallback.rel = 'noopener noreferrer';
+      fallback.textContent = 'View them on GitHub';
+      status.append(fallback, '.');
       retry.hidden = false;
     } finally {
       clearTimeout(timeout);
