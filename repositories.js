@@ -99,7 +99,8 @@ function initializeCarousel() {
     const card = track.firstElementChild;
     if (!card) return;
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    track.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+    const animate = !reducedMotion.matches && document.documentElement.dataset.motion === 'on';
+    track.scrollBy({ left: direction * (card.offsetWidth + gap), behavior: animate ? 'smooth' : 'auto' });
   };
   previous.addEventListener('click', () => move(-1));
   next.addEventListener('click', () => move(1));

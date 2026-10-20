@@ -1,60 +1,42 @@
-# GZVS — Personal developer portfolio
+# GZVS — Georgios Zacharidis
 
-The personal homepage of **Georgios Zacharidis (GZVS)**, designed for **https://gzvs.github.io/**.
+The personal profile at https://gzvs.github.io/: Dynamics 365 Finance & Operations, browser extensions, Windows apps, and iOS experiences.
 
-A responsive, buildless website with an introduction, a compact carousel of public GitHub repositories, Microsoft development skills, GitHub links, and an optional PayPal support link. There are no forms, analytics, cookies, JavaScript dependencies, or application servers. Fonts and images are included locally.
+## Design and motion
 
-## Automatic repository carousel
+A light spatial portfolio with a floating developer illustration, pointer-responsive perspective, scroll-driven depth, a live CSS 3D wireframe cube, and sections entering from different directions. Motion never changes the normal scrolling or hides navigation. The Motion switch pauses decorative animation, parallax, entrance transitions, and smooth carousel movement. The preference is stored locally in the visitor's browser when storage is available. A system preference for reduced motion starts the page with motion off. The visitor can explicitly enable motion with the switch.
 
-`repositories.js` loads GZVS's public repositories directly from GitHub on each page visit. Each card shows the repository name and its GitHub description, links to the repository, and follows newest-created-first order. Public forks and this homepage repository are included. Private repositories are never requested.
+On narrow screens the content stacks and pointer parallax is disabled. Text and links remain available when JavaScript is disabled; the GitHub list has a direct-link fallback.
 
-To add a project, create a public repository on GitHub and set its **Description** in the repository's **About** panel. No homepage edit or deployment is needed. Description changes, renamed repositories, and removed or newly private repositories are reflected the next time the page loads. A missing description is shown as “No description yet.”
+## Automatic GitHub carousel
 
-Previous/next arrows, keyboard left/right arrows, and touch scrolling move through the cards. Controls disable at the ends; there is no automatic rotation. Pagination supports more than 100 repositories. If GitHub is unavailable or its public API request limit is reached, the page offers a retry button and keeps the full GitHub repository-list link available.
+The carousel requests GZVS's public, owned repositories from GitHub on each visit, newest-created first. It renders the actual name and description and links directly to each public repository. Public forks and this homepage repository are included. No access token is embedded, and private repositories are not requested. Pagination handles more than 100 repositories. Empty lists, missing descriptions, timeouts and API errors have visible fallback states, and the complete GitHub repository list is always linked.
 
-No access token is embedded in the page. The browser makes unauthenticated requests to `https://api.github.com/users/GZVS/repos`, using GitHub's public API. Its availability and rate limits apply:
+Create a public repository and fill in its Description in GitHub's About panel: no edit to this website or redeployment is needed. Name, description, visibility and removal changes appear on the next visit, subject to GitHub API availability. The browser uses unauthenticated public API requests, so GitHub's request limits apply.
 
-- https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user
-- https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api
+- API documentation: https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user
+- Limits: https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api
 
-## Publish on GitHub Pages
+## Files and updates
 
-1. Create a **public** repository named **gzvs.github.io** under the **GZVS** account. Initialize it with a README so the `main` branch exists.
-2. Copy this folder’s **contents** directly into that repository. `index.html`, `styles.css`, `repositories.js`, and `assets/` must appear at the repository root. Replace the initial README with this one.
-3. Commit and push to `main` using GitHub Desktop.
-4. Open the repository’s **Settings → Pages**.
-5. Under **Build and deployment**, choose **Deploy from a branch**.
-6. Choose **main** and **/(root)**, then click **Save**.
-7. After deployment completes, open **https://gzvs.github.io/**. GitHub notes that publication can take up to 10 minutes.
+- index.html: profile copy, navigation, app categories and confirmed social links.
+- styles.css: design tokens, layouts, 3D geometry, animations and responsive styles.
+- motion.js: motion preference, pointer/scroll transforms and entrance observers.
+- repositories.js: public API loading, safe repository links and carousel controls.
+- assets/developer-dimensions.webp: transparent hero artwork generated for this portfolio.
+- assets/fonts/: locally hosted Inter and its SIL Open Font License.
+- 404.html: custom missing-page screen.
 
-The empty `.nojekyll` file tells GitHub to publish the static files directly. It must be included in the repository.
+The current LinkedIn link was confirmed by the owner: https://gr.linkedin.com/in/zacharidis.
 
-Official guides:
-- https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
-- https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+For local preview, serve this folder over HTTP, for example with Python's http.server on port 8000. No dependency installation, framework or build step is required. JavaScript modules need HTTP rather than a file URL.
 
-## Preview and edit
+Commit changes to the main branch. GitHub Pages is configured for Deploy from a branch, main, /(root). Keep index.html, styles.css, motion.js, repositories.js and assets directly at the repository root. Keep the empty .nojekyll file so GitHub publishes the files directly.
 
-The published GitHub Pages site is the simplest preview. For a local preview, serve this folder over HTTP (for example, `python -m http.server 8000`) and visit `http://localhost:8000`. JavaScript modules need HTTP rather than a `file://` preview. No installation or build is required.
+Official publishing guide: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 
-- **Introduction, sections, and static links:** edit `index.html`.
-- **Repository names and descriptions:** edit them on GitHub; the carousel fills automatically.
-- **Carousel loading and controls:** `repositories.js`.
-- **Colours, spacing, fonts, and responsive layouts:** edit `styles.css`.
-- **Portrait:** replace `assets/georgios-github-avatar.png` and update its image dimensions if needed.
-- **Site icon:** `assets/favicon.svg`.
-- **Social sharing title and description:** the metadata near the top of `index.html`.
+## Privacy and licenses
 
-After editing, **commit and push** in GitHub Desktop. GitHub Pages deploys changes automatically from the configured source branch.
+There are no accounts, forms or analytics. Motion preference uses browser-local storage. Loading the carousel sends a public API request from the visitor's browser to GitHub. Hosting, API and outbound destinations handle their own service data.
 
-## Accessibility and compatibility
-
-Semantic headings and landmarks, a keyboard skip link, visible keyboard focus, accessible link text, descriptive image alternatives, and reduced-motion support are included. The layout adapts to desktop, tablet, and phone widths. The repository carousel uses JavaScript; the rest of the page and the link to the full GitHub repository list remain available without it.
-
-## Assets and privacy
-
-The portrait was retrieved from the developer’s existing public GitHub avatar and is included unchanged. TinyShield’s icon comes from the developer’s existing project. Those images retain their respective owners’ rights.
-
-The locally hosted Inter font is distributed under the SIL Open Font License; its notice is in `assets/fonts/OFL.txt`. Site code is MIT licensed; see `LICENSE`.
-
-This site does not include analytics or visitor data collection code. Loading the repository carousel sends a public API request from the visitor's browser to GitHub. GitHub Pages, GitHub's API, and external destinations such as GitHub and PayPal handle their own hosting and service data.
+Site code is MIT licensed; see LICENSE. The font has its own included SIL license. The original public GitHub portrait remains available for social metadata; existing image assets retain their owners' rights. The decorative hero illustration is separate from the code-native page text, links and controls.
