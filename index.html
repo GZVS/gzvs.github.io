@@ -18,16 +18,18 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/inter-latin.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="assets/fonts/dm-serif-display.woff" as="font" type="font/woff" crossorigin>
-  <link rel="stylesheet" href="styles.css">
-  <script type="module" src="motion.js"></script>
-  <script type="module" src="repositories.js"></script>
+  <link rel="preload" href="assets/split-studio-space.webp" as="image">
+  <link rel="stylesheet" href="styles.css?v=split-studio-1">
+  <script type="module" src="motion.js?v=split-studio-1"></script>
+  <script type="module" src="repositories.js?v=split-studio-1"></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
   <svg class="svg-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
     <symbol id="arrow-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
-    <symbol id="arrow-left" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
-    <symbol id="arrow-right" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="github" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.12.68-3.78-1.33-3.78-1.33-.51-1.3-1.24-1.65-1.24-1.65-1.02-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.92.1-.72.39-1.21.71-1.49-2.49-.28-5.11-1.25-5.11-5.54 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.72 10.72 0 0 1 5.61 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.71.78 1.14 1.78 1.14 3.01 0 4.3-2.62 5.25-5.12 5.53.4.35.76 1.03.76 2.08v3.11c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></symbol>
+    <symbol id="linkedin" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="2" fill="currentColor" stroke="none"/><path d="M6 10v8m0-12v.1M11 18v-8m0 3a3 3 0 0 1 6 0v5" stroke="#041119" stroke-width="2.3"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.8a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.4a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
     <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5c4 2 10 2 14 0M5 17.5c4-2 10-2 14 0"/></symbol>
     <symbol id="windows" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="m2 4 9-1v8H2zm11-1.2L23 1v10H13zM2 13h9v8l-9-1zm11 0h10v10l-10-1.8z"/></symbol>
     <symbol id="apple" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M16.8 1c.2 1.6-.5 3-1.4 4-.9 1-2.2 1.7-3.5 1.6-.2-1.5.5-2.9 1.4-3.9.9-.9 2.4-1.6 3.5-1.7ZM20.7 17.7c-.5 1.1-.8 1.6-1.4 2.6-.9 1.3-2.2 3-3.7 3-1.4 0-1.8-.9-3.7-.9s-2.3.9-3.7.9c-1.5 0-2.7-1.6-3.6-2.9C2.1 16.7 1 11.8 3 9.1c1.4-1.9 3.5-2.3 5-2.3 1.5 0 2.4.9 3.7.9 1.2 0 2-.9 3.7-.9 1.3 0 3.1.4 4.4 2-3.6 2.2-3 7.1.9 8.9Z"/></symbol>
@@ -37,46 +39,57 @@
     <symbol id="azure" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="m11 2-7 16 6 1L17 2Zm7 5 6 15H11l9-2-4-8ZM7 22H0l4-9Z"/></symbol>
   </defs></svg>
   <div class="site-shell">
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="GZVS homepage"><img src="assets/gzvs-wordmark.webp" alt="GZVS" width="188" height="50"><span aria-hidden="true">.</span></a>
+    <aside class="profile-sidebar" aria-label="About Georgios">
+      <a class="brand profile-brand" href="#top" aria-label="GZVS homepage"><img src="assets/gzvs-wordmark.webp" alt="GZVS" width="188" height="50"></a>
+      <figure class="portrait"><img src="assets/georgios-github-avatar.png" alt="Georgios Zacharidis, wearing a white shirt with the GZVS logo" width="460" height="460" fetchpriority="high" draggable="false"></figure>
+      <div class="profile-info">
+        <h2 class="profile-name">Georgios Zacharidis</h2>
+        <p class="profession">Dynamics 365 F&amp;O Developer</p>
+      </div>
+      <nav class="profile-social" aria-label="Profile links">
+        <a href="https://github.com/GZVS" target="_blank" rel="noopener noreferrer"><svg class="icon filled" aria-hidden="true"><use href="#github"/></svg><span>GitHub</span><svg class="icon outward" aria-hidden="true"><use href="#arrow-up-right"/></svg></a>
+        <a href="https://gr.linkedin.com/in/zacharidis" target="_blank" rel="noopener noreferrer"><svg class="icon linkedin-icon" aria-hidden="true"><use href="#linkedin"/></svg><span>LinkedIn</span><svg class="icon outward" aria-hidden="true"><use href="#arrow-up-right"/></svg></a>
+        <a href="https://www.paypal.com/paypalme/Zacharidis" target="_blank" rel="noopener noreferrer"><svg class="icon support-icon" aria-hidden="true"><use href="#heart"/></svg><span>Support</span><svg class="icon outward" aria-hidden="true"><use href="#arrow-up-right"/></svg></a>
+      </nav>
+      <div class="technology-rail" aria-label="Technologies I work with">
+        <span class="technology technology-xpp"><svg class="icon" aria-hidden="true"><use href="#code"/></svg><span>X++</span></span>
+        <span class="technology technology-csharp"><svg class="icon" aria-hidden="true"><use href="#csharp"/></svg><span>C#</span></span>
+        <span class="technology technology-sql"><svg class="icon" aria-hidden="true"><use href="#database"/></svg><span>SQL</span></span>
+        <span class="technology technology-azure"><svg class="icon filled" aria-hidden="true"><use href="#azure"/></svg><span>Azure</span></span>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="site-header">
         <nav class="main-nav" aria-label="Main navigation"><a href="#about">About</a><a href="#projects">Projects</a><a href="#connect">Connect</a></nav>
         <button class="motion-toggle" id="motion-toggle" type="button" aria-label="Motion off" aria-pressed="false" hidden><span id="motion-label">Motion off</span><span class="toggle-track" aria-hidden="true"><span></span></span></button>
-      </div>
-    </header>
-    <main id="main">
-      <section class="hero container" id="about" aria-labelledby="hero-title">
-        <div class="hero-visual" id="hero-visual">
-          <div class="orbit-layer" aria-hidden="true"><img src="assets/orbital-trails.webp" alt="" width="1024" height="1024" draggable="false"></div>
-          <figure class="portrait-float"><div class="portrait-frame"><img src="assets/georgios-github-avatar.png" alt="Georgios Zacharidis, wearing a white shirt with the GZVS logo" width="460" height="460" fetchpriority="high" draggable="false"></div></figure>
-          <a class="orbit-label label-browser" href="#projects"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span>Browser<br>extensions</span></a>
-          <a class="orbit-label label-windows" href="#projects"><svg class="icon filled" aria-hidden="true"><use href="#windows"/></svg><span>Windows<br>apps</span></a>
-          <a class="orbit-label label-ios" href="#projects"><svg class="icon filled" aria-hidden="true"><use href="#apple"/></svg><span>iOS apps</span></a>
-        </div>
-        <div class="hero-copy reveal" data-entry="right">
+      </header>
+
+      <main id="main" tabindex="-1">
+        <section class="hero" id="about" aria-labelledby="hero-title">
           <h1 id="hero-title"><span>Code across</span><span class="dimension-text">dimensions.</span></h1>
-          <h2 class="profile-name">Georgios Zacharidis</h2>
-          <p class="profession">Dynamics 365 F&amp;O Developer</p>
           <p class="profile-description">I build browser extensions, Windows apps, and iOS apps.</p>
           <div class="hero-actions"><a class="button" href="#projects">Explore my work <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a><a class="text-link" href="https://gr.linkedin.com/in/zacharidis" target="_blank" rel="noopener noreferrer">LinkedIn <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a></div>
-        </div>
-      </section>
-      <div class="technology-rail container reveal" data-entry="bottom" aria-label="Technologies I work with">
-        <span class="technology technology-xpp"><svg class="icon" aria-hidden="true"><use href="#code"/></svg><span>X++</span></span><span class="technology technology-csharp"><svg class="icon" aria-hidden="true"><use href="#csharp"/></svg><span>C#</span></span><span class="technology technology-sql"><svg class="icon" aria-hidden="true"><use href="#database"/></svg><span>SQL</span></span><span class="technology technology-azure"><svg class="icon" aria-hidden="true"><use href="#azure"/></svg><span>Azure</span></span>
-      </div>
-      <section class="projects container reveal" data-entry="bottom" id="projects" aria-labelledby="work-title">
-        <div class="repositories-heading"><h2 id="work-title">From GitHub</h2><p>Public repositories, automatically updated.</p></div>
-        <button class="carousel-arrow" type="button" id="repos-prev" aria-label="Previous repositories" aria-controls="repos-track" disabled><svg class="icon" aria-hidden="true"><use href="#arrow-left"/></svg></button>
-        <div class="repositories-carousel" role="region" aria-roledescription="carousel" aria-labelledby="work-title"><ul class="repositories-track" id="repos-track" tabindex="0" aria-label="Public GitHub repositories" hidden></ul><div class="repositories-status"><p id="repos-status" role="status" aria-live="polite">View my public projects on <a href="https://github.com/GZVS?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>.</p><button class="repos-retry" id="repos-retry" type="button" hidden>Try again</button></div></div>
-        <button class="carousel-arrow" type="button" id="repos-next" aria-label="Next repositories" aria-controls="repos-track" disabled><svg class="icon" aria-hidden="true"><use href="#arrow-right"/></svg></button>
-        <noscript><p>Enable JavaScript for the carousel, or browse <a href="https://github.com/GZVS?tab=repositories">all my public repositories on GitHub</a>.</p></noscript>
-      </section>
-    </main>
-    <footer class="site-footer container" id="connect" aria-label="Connect with Georgios">
-      <a class="brand" href="#top" aria-label="Back to top"><img src="assets/gzvs-wordmark.webp" alt="GZVS" width="188" height="50"><span aria-hidden="true">.</span></a>
-      <div class="social-links"><a href="https://github.com/GZVS" target="_blank" rel="noopener noreferrer">GitHub <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a><a href="https://gr.linkedin.com/in/zacharidis" target="_blank" rel="noopener noreferrer">LinkedIn <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a><a href="https://www.paypal.com/paypalme/Zacharidis" target="_blank" rel="noopener noreferrer">Support <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a></div>
-      <a class="site-address" href="#top"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span>gzvs.github.io</span></a>
-    </footer>
+          <nav class="category-links" aria-label="What I build">
+            <a href="#projects"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span>Browser extensions</span></a>
+            <a href="#projects"><svg class="icon filled" aria-hidden="true"><use href="#windows"/></svg><span>Windows apps</span></a>
+            <a href="#projects"><svg class="icon filled apple-icon" aria-hidden="true"><use href="#apple"/></svg><span>iOS apps</span></a>
+          </nav>
+        </section>
+
+        <section class="projects" id="projects" aria-labelledby="work-title">
+          <div class="repositories-heading"><h2 id="work-title">From GitHub</h2><p>Public repositories, automatically updated.</p></div>
+          <ul class="repositories-list" id="repos-list" aria-label="Public GitHub repositories" hidden></ul>
+          <div class="repositories-status"><p id="repos-status" role="status" aria-live="polite">View my public projects on <a href="https://github.com/GZVS?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>.</p><button class="repos-retry" id="repos-retry" type="button" hidden>Try again</button></div>
+        </section>
+      </main>
+
+      <footer class="site-footer" id="connect" aria-label="Connect with Georgios">
+        <a class="brand" href="#top" aria-label="Back to top"><img src="assets/gzvs-wordmark.webp" alt="GZVS" width="188" height="50"></a>
+        <nav class="social-links" aria-label="Connect"><a href="https://github.com/GZVS" target="_blank" rel="noopener noreferrer">GitHub <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a><a href="https://gr.linkedin.com/in/zacharidis" target="_blank" rel="noopener noreferrer">LinkedIn <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a><a href="https://www.paypal.com/paypalme/Zacharidis" target="_blank" rel="noopener noreferrer">Support <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a></nav>
+        <a class="site-address" href="#top"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span>gzvs.github.io</span></a>
+      </footer>
+    </div>
   </div>
 </body>
 </html>

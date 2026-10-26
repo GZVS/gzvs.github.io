@@ -49,11 +49,6 @@ export async function fetchPublicRepositories({ fetcher = globalThis.fetch, owne
   return [...repositories.values()];
 }
 
-export function carouselBounds(scrollLeft, viewportWidth, contentWidth) {
-  const maximum = Math.max(0, contentWidth - viewportWidth);
-  return { previous: scrollLeft > 4, next: scrollLeft < maximum - 4 };
-}
-
 // Icons identify known repository types; every title, description and URL stays live GitHub data.
 function makeIcon(name, document) {
   const icon = document.createElement('span');
@@ -81,9 +76,9 @@ function makeIcon(name, document) {
   return icon;
 }
 
-function makeCard(repository, document) {
+function makeRow(repository, document) {
   const item = document.createElement('li');
-  item.className = 'repository-card';
+  item.className = 'repository-row';
   const link = document.createElement('a');
   link.href = repository.url;
   link.target = '_blank';
@@ -91,74 +86,46 @@ function makeCard(repository, document) {
   link.title = repository.description;
   const heading = document.createElement('h3');
   heading.textContent = repository.name;
-  const top = document.createElement('div');
-  top.className = 'repository-title';
-  top.append(heading);
   const description = document.createElement('p');
   description.textContent = repository.description;
   const details = document.createElement('div');
   details.className = 'repository-details';
-  details.append(top, description);
-  link.append(makeIcon(repository.name, document), details);
+  details.append(heading, description);
+  const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  arrow.setAttribute('class', 'icon outward');
+  arrow.setAttribute('aria-hidden', 'true');
+  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+  use.setAttribute('href', '#arrow-up-right');
+  arrow.append(use);
+  link.append(makeIcon(repository.name, document), details, arrow);
   item.append(link);
   return item;
 }
 
-function initializeCarousel() {
-  const track = document.getElementById('repos-track');
+function initializeRepositories() {
+  const list = document.getElementById('repos-list');
   const status = document.getElementById('repos-status');
-  const previous = document.getElementById('repos-prev');
-  const next = document.getElementById('repos-next');
   const retry = document.getElementById('repos-retry');
-  if (!track || !status || !previous || !next || !retry) return;
-
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const updateControls = () => {
-    const bounds = carouselBounds(track.scrollLeft, track.clientWidth, track.scrollWidth);
-    previous.disabled = !bounds.previous;
-    next.disabled = !bounds.next;
-  };
-  const move = direction => {
-    const card = track.firstElementChild;
-    if (!card) return;
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    const animate = !reducedMotion.matches && document.documentElement.dataset.motion === 'on';
-    track.scrollBy({ left: direction * (card.offsetWidth + gap), behavior: animate ? 'smooth' : 'auto' });
-  };
-  previous.addEventListener('click', () => move(-1));
-  next.addEventListener('click', () => move(1));
-  track.addEventListener('scroll', updateControls, { passive: true });
-  track.addEventListener('keydown', event => {
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      event.preventDefault();
-      move(event.key === 'ArrowLeft' ? -1 : 1);
-    }
-  });
-  if ('ResizeObserver' in window) new ResizeObserver(updateControls).observe(track);
-  else window.addEventListener('resize', updateControls);
+  if (!list || !status || !retry) return;
 
   let loading = false;
   const load = async () => {
     if (loading) return;
     loading = true;
     retry.hidden = true;
-    track.setAttribute('aria-busy', 'true');
+    list.setAttribute('aria-busy', 'true');
     status.textContent = 'Loading repositories…';
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
     try {
       const repositories = await fetchPublicRepositories({ signal: controller.signal });
-      track.replaceChildren(...repositories.map(repository => makeCard(repository, document)));
-      track.hidden = repositories.length === 0;
-      track.scrollLeft = 0;
+      list.replaceChildren(...repositories.map(repository => makeRow(repository, document)));
+      list.hidden = repositories.length === 0;
       status.textContent = repositories.length
         ? `${repositories.length} public ${repositories.length === 1 ? 'repository' : 'repositories'}`
         : 'No public repositories yet. Check back soon.';
-      requestAnimationFrame(updateControls);
     } catch {
-      track.hidden = true;
-      previous.disabled = true;
-      next.disabled = true;
+      list.hidden = true;
       status.replaceChildren(document.createTextNode('Repositories are unavailable right now. '));
       const fallback = document.createElement('a');
       fallback.href = 'https://github.com/GZVS?tab=repositories';
@@ -169,7 +136,7 @@ function initializeCarousel() {
       retry.hidden = false;
     } finally {
       clearTimeout(timeout);
-      track.setAttribute('aria-busy', 'false');
+      list.setAttribute('aria-busy', 'false');
       loading = false;
     }
   };
@@ -177,4 +144,4 @@ function initializeCarousel() {
   load();
 }
 
-if (typeof document !== 'undefined') initializeCarousel();
+if (typeof document !== 'undefined') initializeRepositories();
