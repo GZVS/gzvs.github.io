@@ -30,7 +30,7 @@
           <p class="lede">Crimson Pulse — YouTube Visualizer, version 0.3.0 and later</p>
         </div>
       </div>
-      <p class="small">Effective 9 October 2026 · Developer: GZVS (Georgios Zacharidis)</p>
+      <p class="small">Effective 2 November 2026 · Version 0.4.0 · Developer: GZVS (Georgios Zacharidis)</p>
 
       <h2>Purpose</h2>
       <p>Crimson Pulse displays music-reactive visualizations on YouTube and YouTube Music. Audio processing happens on your device after you explicitly start a session.</p>
@@ -38,6 +38,7 @@
       <ul>
       <li>Tab audio: Crimson Pulse accesses audio from the selected supported tab and calculates frequency and energy measurements in memory. It does not use your microphone, capture screen video, or create audio recordings.</li>
       <li>Current tab and website content: the tab identifier, current page URL, player elements, and playback state are used to check compatibility, position the visualizer, and manage the session. The extension does not create a browsing-history database.</li>
+      <li>Now playing caption: while the visuals are showing, the extension reads the title (and, on YouTube Music, the artist) of the current track from the page to display it on screen. This text is used only for that display; it is not saved or sent anywhere. You can turn the caption off in the settings.</li>
       <li>Page interaction: pointer, click, scroll, touch, and keyboard events reset the inactivity timer and hide the visualization. Event histories and typed text are not stored. Configured extension shortcuts control the active session.</li>
       <li>Preferences and presets: visual settings, separate YouTube and YouTube Music settings, favorite styles, and custom preset names and settings are saved in local extension storage. These settings are not synced by the extension or uploaded to the developer.</li>
       </ul>
@@ -53,6 +54,7 @@
       <li>activeTab: identify and authorize the tab selected when you invoke the extension.</li>
       <li>tabCapture: access that tab&#x27;s audio after you start a session.</li>
       <li>offscreen: analyze the audio and preserve playback while the popup is closed.</li>
+      <li>scripting: when you start Crimson Pulse on a YouTube or YouTube Music tab that was open before the extension was installed or updated, add the visualizer to that tab so it works without a reload.</li>
       <li>Content scripts on www.youtube.com and music.youtube.com: access the player, playback state, and interaction events needed to display and dismiss visuals.</li>
       </ul>
       <h2>Donations and external services</h2>
