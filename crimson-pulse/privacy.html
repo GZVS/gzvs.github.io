@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crimson Pulse — Privacy Policy</title>
+  <meta name="description" content="Privacy policy for Crimson Pulse, the music visualizer for YouTube and YouTube Music. Audio is analysed on your device and nothing is sent anywhere.">
+  <meta name="theme-color" content="#050f15">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://gzvs.github.io/crimson-pulse/privacy.html">
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="stylesheet" href="page.css?v=1">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header class="topbar">
+      <a href="../">GZVS</a>
+      <nav aria-label="Crimson Pulse">
+        <a href="https://chromewebstore.google.com/detail/crimson-pulse-youtube-vis/odhiojnfkdcbklanamllkpgdakkomaog" rel="noopener">Chrome Web Store</a>
+        <a href="privacy.html" aria-current="page">Privacy</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="app-head">
+        <img src="icon.png" alt="" width="88" height="88">
+        <div>
+          <h1>Privacy Policy</h1>
+          <p class="lede">Crimson Pulse — YouTube Visualizer, version 0.3.0 and later</p>
+        </div>
+      </div>
+      <p class="small">Effective 2 November 2026 · Version 0.4.0 · Developer: GZVS (Georgios Zacharidis)</p>
+
+      <h2>Purpose</h2>
+      <p>Crimson Pulse displays music-reactive visualizations on YouTube and YouTube Music. Audio processing happens on your device after you explicitly start a session.</p>
+      <h2>Information processed on your device</h2>
+      <ul>
+      <li>Tab audio: Crimson Pulse accesses audio from the selected supported tab and calculates frequency and energy measurements in memory. It does not use your microphone, capture screen video, or create audio recordings.</li>
+      <li>Current tab and website content: the tab identifier, current page URL, player elements, and playback state are used to check compatibility, position the visualizer, and manage the session. The extension does not create a browsing-history database.</li>
+      <li>Now playing caption: while the visuals are showing, the extension reads the title (and, on YouTube Music, the artist) of the current track from the page to display it on screen. This text is used only for that display; it is not saved or sent anywhere. You can turn the caption off in the settings.</li>
+      <li>Page interaction: pointer, click, scroll, touch, and keyboard events reset the inactivity timer and hide the visualization. Event histories and typed text are not stored. Configured extension shortcuts control the active session.</li>
+      <li>Preferences and presets: visual settings, separate YouTube and YouTube Music settings, favorite styles, and custom preset names and settings are saved in local extension storage. These settings are not synced by the extension or uploaded to the developer.</li>
+      </ul>
+      <h2>Use and sharing</h2>
+      <p>This information is used only to provide the visualization and its controls. Captured audio is connected back to your audio output so you can continue hearing the video. Crimson Pulse has no developer backend, analytics, advertising system, account system, or remote executable code. The extension does not sell data or send audio, page activity, or settings to the developer or other recipients. Data is not used for credit or lending decisions.</p>
+      <h2>Retention and deletion</h2>
+      <p>Audio buffers, frequency data, tab identifiers, and inactivity timing are transient. Preferences remain in the browser profile until changed or the extension is uninstalled. Delete a custom preset using the Delete button after selecting it. Uninstalling the extension removes its local extension settings from that browser profile.</p>
+      <h2>Session controls</h2>
+      <p>Use Stop visualizer to end audio capture. Closing the captured tab or navigating away from supported watch pages stops the session. Navigation between supported watch pages may keep the session active. A reload or browser interruption may require starting again. The show/hide shortcut changes visualization visibility; it does not stop audio capture. Press Esc to leave fullscreen.</p>
+      <h2>Permissions</h2>
+      <ul>
+      <li>storage: save visual preferences and custom presets locally.</li>
+      <li>activeTab: identify and authorize the tab selected when you invoke the extension.</li>
+      <li>tabCapture: access that tab&#x27;s audio after you start a session.</li>
+      <li>offscreen: analyze the audio and preserve playback while the popup is closed.</li>
+      <li>scripting: when you start Crimson Pulse on a YouTube or YouTube Music tab that was open before the extension was installed or updated, add the visualizer to that tab so it works without a reload.</li>
+      <li>Content scripts on www.youtube.com and music.youtube.com: access the player, playback state, and interaction events needed to display and dismiss visuals.</li>
+      </ul>
+      <h2>Donations and external services</h2>
+      <p>The optional support button opens PayPal at <a href="https://paypal.me/Zacharidis" rel="noopener">paypal.me/Zacharidis</a>. PayPal&#x27;s policies apply to that website and any payment. Crimson Pulse does not process payment details. The developer may receive donor information directly from PayPal under its service terms. YouTube, Microsoft Edge, and other browsers operate under their own privacy policies.</p>
+      <h2>Changes and contact</h2>
+      <p>This policy will be updated when the extension&#x27;s data practices change. For privacy questions or support, contact <a href="mailto:gzvsDev@icloud.com">gzvsDev@icloud.com</a>.</p>
+    </main>
+
+    <footer>
+      © 2026 Georgios Zacharidis · <a href="../">gzvs.github.io</a>
+    </footer>
+  </div>
+</body>
+</html>
