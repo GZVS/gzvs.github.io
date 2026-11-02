@@ -8,6 +8,8 @@ Live: https://gzvs.github.io/
 
 - Split Studio layout: a sticky profile column with the original portrait, GZVS branding, social links, and technology stack. Short desktop screens can scroll the profile column independently so every link remains reachable.
 - Spacious main column with the two-line headline, gold action button, software categories, and open repository rows separated by fine cyan rules.
+- Apps section ("App shelf"): a card per iPhone app (icon, name, one-line description, Support and Privacy links; an App Store button once an app is live) and a Browser extensions group with Chrome Web Store links. Cards are plain HTML in `index.html`; add an app by copying a card.
+- Each app has its own folder (`tapeloop/`, `guarantee/`, `wholestory/`, `padel-hunter/`) with a support page (`index.html`) and `privacy.html`; extensions keep their privacy policy in their own folder (`spartan-shield/privacy.html`). This repo is the single public home for every app's privacy and support URL.
 - Matching space artwork, self-hosted Inter and DM Serif Display fonts, and responsive layouts that stack the profile above the work on phones and tablets.
 - A Motion control saves the visitor’s preference locally and enables gentle portrait movement. The operating system’s reduced-motion preference always wins; no content depends on animation.
 - Public, owned repositories fetched from GitHub on each visit. Pagination is followed, and titles, descriptions and canonical repository links come from the live public API. New public repositories appear automatically. No token or private-repository access is used.
@@ -20,6 +22,7 @@ Live: https://gzvs.github.io/
 - `styles.css`: design tokens, split layout, responsive styles, focus states, and decorative animation.
 - `motion.js`: persisted motion preference and reduced-motion handling.
 - `repositories.js`: public repository pagination, validation, and vertical row rendering.
+- `<app>/`: support page, privacy policy, `page.css` and icon for each app or extension.
 - `assets/georgios-github-avatar.png`: original profile photo, unchanged.
 - `assets/split-studio-space.webp`: space artwork created for the approved layout.
 - `assets/gzvs-wordmark.webp`: existing GZVS wordmark.
