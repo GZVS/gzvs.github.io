@@ -264,8 +264,6 @@ html[data-paused="true"] *, html[data-paused="true"] *::before, html[data-paused
 .app-card.is-upcoming { border-style: dashed; border-color: #4b7586; background: #06141d99; }
 .app-card-head { display: flex; align-items: center; gap: 18px; min-width: 0; }
 .app-icon { display: block; flex: none; width: 76px; height: 76px; border-radius: 18px; }
-.app-glyph { display: flex; align-items: center; justify-content: center; flex: none; width: 76px; height: 76px; border: 1px solid #2a4a5a; border-radius: 18px; background: #0d2230; }
-.app-glyph svg { width: 44px; height: 44px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .app-card h3, .app-card h4 { margin: 0; font: 400 32px/1.1 var(--display); overflow-wrap: anywhere; }
 .app-meta { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
 .app-pitch { margin: 0; color: #d6e2ea; font-size: 17px; line-height: 1.55; }
@@ -390,9 +388,7 @@ html[data-paused="true"] *, html[data-paused="true"] *::before, html[data-paused
   .apps-heading h2 { font-size: 36px; }
   .apps-heading p { font-size: 14px; }
   .app-card { padding: 20px; gap: 14px; }
-  .app-icon, .app-glyph { width: 60px; height: 60px; border-radius: 14px; }
-  .app-glyph svg { width: 34px; height: 34px; }
-  .app-card h3, .app-card h4 { font-size: 26px; }
+  .app-icon,     .app-card h3, .app-card h4 { font-size: 26px; }
   .app-pitch { font-size: 15px; }
   .repositories-heading p { font-size: 14px; line-height: 1.6; }
   .repository-row > a { grid-template-columns: 29px minmax(0, 1fr) 18px; gap: 15px; min-height: 100px; padding: 18px 3px; }
